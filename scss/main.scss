@@ -1,0 +1,257 @@
+@use "sass:color";
+@use 'utilities';
+@import 'variables';
+
+
+
+body {
+
+
+    // min-height: 100vh;
+    padding: 0 40px;
+    background-color: $primary-color;
+    color: $light-color;
+    font-family: $main-font;
+    display: grid;
+    // idk what auto does here
+    grid:
+        "header header header header" auto ".....  lists active ....." auto / 1fr minmax(150px, 500px) minmax(250px, 750px) 1fr;
+
+    .main-title {
+        grid-area: header;
+        color: $header-color;
+        justify-self: center;
+        padding: 30px;
+        font-size: calc(6vw + 1.5rem);
+        font-weight: 700px;
+
+    }
+
+
+
+
+    .all-tasks {
+        grid-area: lists;
+        $padding-list: 45px;
+
+        .task-list {
+            // The ul on the tasks
+            font-weight: 200;
+            line-height: 1.7;
+            font-size: 1.5rem;
+            list-style-type: circle;
+            padding-left: $padding-list;
+
+            .active-list {
+                font-weight: 600;
+            }
+
+            &>* {
+                cursor: pointer;
+
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
+        }
+
+        form {
+            padding-left: $padding-list - 20;
+            padding-top: 30px;
+        }
+    }
+
+    .todo-list {
+        $padding: 2.2rem;
+        margin-left: 20px;
+        color: $dark-color;
+        background-color: $light-color;
+        font-weight: 400;
+        grid-area: active;
+        line-height: 2.5;
+        font-size: 1.2rem;
+
+        .todo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: $padding;
+            background: $light-grey;
+
+            .list-title {
+                line-height: 1;
+            }
+
+            .task-count {
+                line-height: 1;
+                margin-left: 2rem;
+                font-size: 1.5rem;
+            }
+        }
+
+        .todo-body {
+            padding: $padding;
+
+            .task label {
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                position: relative;
+                font-size: 1.2em;
+                padding: 13px 0;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                    height: 2px;
+                    background-color: $light-grey;
+                }
+            }
+
+            // selecting the last element of the tasks
+
+
+            .new-task-creator input,
+            .new-task-creator input::placeholder {
+                font-size: 1.07em;
+            }
+
+            .new-task-creator input {
+                width: max(75%, 200px);
+            }
+
+            .tasks {
+                padding-bottom: 15px;
+
+                // getting rid of last line. interesting selector, not very elegant but gets the job done
+                &> :last-child label::after {
+                    content: "";
+                    // and removing it
+                    display: none;
+                }
+
+                // When you are hovering on a given task, and you only want the checkbox to expand
+                // The second selector is so that this will appear when we tab through. Note the '+' selector which selects the thing right next to it
+                .task:hover .custom-checkbox,
+                [type="checkbox"]:focus+label .custom-checkbox {
+                    transform: scale(1.2);
+                    // This took way to long to figure out. For some reason I kept on using color instead of border color
+                    border-color: $primary-color;
+                }
+
+                [type="checkbox"]:checked+label .custom-checkbox {
+                    // The styles for when it is checked
+                    background-color: $primary-color;
+                    border-color: $primary-color;
+                    // Set
+                    box-shadow: inset 0 0 0px 3px whitesmoke;
+                }
+
+
+
+            }
+
+            .delete-stuff {
+                display: flex;
+                padding-top: 40px;
+                justify-content: space-between;
+                font-size: 1.5rem;
+                align-items: center;
+
+
+                &>* {
+                    cursor: pointer;
+                    color: $dark-color;
+
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+
+                .delete-btn {
+                    flex: 1.5;
+                    text-align: center;
+
+
+                }
+
+                .rename-btn {
+                    flex: 0.5;
+                    text-align: center;
+                }
+
+                .clear-complete-btn {
+                    flex: 1;
+                    text-align: left;
+                    font-size: 130%;
+                }
+
+                span.space {
+                    flex: 6;
+                }
+            }
+        }
+    }
+
+
+    @mixin input-styles {
+        font-size: 1.2rem;
+        color: inherit;
+        font-weight: 400;
+    }
+
+
+    // Selecting the form that adds the new item (so basically the parent of '.new'
+    .add-new-item {
+        display: flex;
+
+        .btn-add {
+            font-size: 160%;
+            // I set the padding on the add button somehwere else in the code and idk where i did that. so here
+            padding-right: 15px;
+        }
+
+        .new {
+            @include input-styles();
+            background: transparent;
+            color: inherit;
+            outline: none;
+            border: none;
+            border-bottom: 1px solid;
+            transition: all 175ms ease-out;
+            line-height: 1.4;
+            // Makes the button go first, and the text input second
+            order: 2;
+
+            &:focus {
+                border-bottom-width: 3px;
+                transition: all 175ms ease-out;
+
+                &::placeholder {
+                    color: color.scale($light-color, $lightness: -20%)
+                }
+
+            }
+
+            &::placeholder {
+                @include input-styles();
+            }
+        }
+
+
+    }
+
+
+
+    .section-title {
+        font-size: 2.25rem;
+        padding-top: 25px;
+        padding-bottom: 30px;
+    }
+}
+
+//TODO: set the maximum font on everything
+// Make a tooltip

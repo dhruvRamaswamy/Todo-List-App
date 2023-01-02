@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://kit.fontawesome.com/e7d83d0eed.js" crossorigin="anonymous"></script>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <h1 class="main-title"><a href="/">Things to do</a></h1>
+    <div class="all-tasks">
+        <h2 class="task-list-title section-title">My List</h2>
+        <ul class="task-list" data-lists>
+        </ul>
+
+        <form class="add-new-item" data-new-list-form>
+            <!-- aria-label Friendly to screen readers -->
+            <input type="text" data-new-list-input class="new list" placeholder="List Name"
+                aria-label="new list name" />
+            <!-- Notice how the button is here even though it should go first. We do this for tab order -->
+            <button class="btn-add btn list" aria-label="create new list">+</button>
+        </form>
+    </div>
+    <div class="todo-list">
+        <div class="todo-header">
+            <h2 class="list-title section-title">YouTube</h2>
+            <p class="task-count">3 tasks remaining</p>
+        </div>
+        <div class="todo-body">
+            <div class="tasks">
+                <div class="task">
+                    <input type="checkbox" id="task-1" />
+                    <!-- label for makes the label apply to a given input (with an id) so that you can click on the whole text -->
+                    <label for="task-1">
+                        <span class="custom-checkbox"></span>
+                        get stuff done
+                    </label>
+                </div>
+                <!--Class 1 -->
+
+
+                <div class="task">
+                    <input type="checkbox" id="task-2" />
+                    <label for="task-2">
+                        <span class="custom-checkbox"></span>
+                        get stuff done hello
+                    </label>
+                </div>
+                <!--Class 2 -->
+
+
+                <div class="task">
+                    <input type="checkbox" id="task-3" />
+                    <label for="task-3">
+                        <span class="custom-checkbox"></span>
+                        get stuff done 3
+                    </label>
+                </div>
+                <!--Class 3 -->
+            </div>
+            <div class="new-task-creator">
+                <form class="add-new-item">
+                    <input type="text" class="new task" placeholder="new item" aria-label="create new task" />
+                    <button class="btn-add btn list" aria-label="create new list">+</button>
+                </form>
+            </div>
+            <div class="delete-stuff">
+                <!-- Making these all tabindexes of 1 allows us to tab through-->
+                <i title="Clear Completed Tasks" tabindex="0" class="clear-complete-btn fa-solid fa-circle-check"></i>
+                <!-- This is probably the most inelegant solution for this problem Future self, i am sorry. This is going to serve as the space between the clear and delete button, to fix the problem of hovering -->
+                <span class="space"></span>
+                <i tabindex="0" class="delete-btn fa-solid fa-trash"></i>
+                <i tabindex="0" class="rename-btn fa-solid fa-pen"></i>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

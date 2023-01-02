@@ -1,0 +1,239 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400;700;900&display=swap");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*::selection {
+  color: black;
+  background-color: white;
+}
+
+input,
+button {
+  font-family: "Work Sans", sans-serif;
+}
+
+a {
+  cursor: pointer;
+  color: hsl(214deg, 100%, 83%);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+a:hover {
+  color: hsl(0deg, 0%, 96%);
+}
+
+.btn {
+  cursor: pointer;
+  background: 0;
+  border: 0;
+  color: inherit;
+  font-size: inherit;
+}
+.btn-add {
+  font-size: 1.6rem;
+  padding-right: 10px;
+  font-weight: 900;
+}
+.btn-add:hover {
+  opacity: 0.7;
+}
+
+[type=checkbox] {
+  opacity: 0;
+  position: absolute;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 0.95em;
+  height: 0.95em;
+  cursor: pointer;
+  border: 2px solid hsl(0deg, 0%, 20%);
+  border-radius: 50%;
+  font-size: inherit;
+  transform: scale(1);
+  transition: all 200ms ease-out;
+}
+
+body {
+  padding: 0 40px;
+  background-color: hsl(214deg, 56%, 48%);
+  color: hsl(0deg, 0%, 96%);
+  font-family: "Work Sans", sans-serif;
+  display: grid;
+  grid: "header header header header" auto ".....  lists active ....." auto/1fr minmax(150px, 500px) minmax(250px, 750px) 1fr;
+}
+body .main-title {
+  grid-area: header;
+  color: hsl(214deg, 100%, 83%);
+  justify-self: center;
+  padding: 30px;
+  font-size: calc(6vw + 1.5rem);
+  font-weight: 700px;
+}
+body .all-tasks {
+  grid-area: lists;
+}
+body .all-tasks .task-list {
+  font-weight: 200;
+  line-height: 1.7;
+  font-size: 1.5rem;
+  list-style-type: circle;
+  padding-left: 45px;
+}
+body .all-tasks .task-list .active-list {
+  font-weight: 600;
+}
+body .all-tasks .task-list > * {
+  cursor: pointer;
+}
+body .all-tasks .task-list > *:hover {
+  opacity: 0.7;
+}
+body .all-tasks form {
+  padding-left: 25px;
+  padding-top: 30px;
+}
+body .todo-list {
+  margin-left: 20px;
+  color: hsl(0deg, 0%, 20%);
+  background-color: hsl(0deg, 0%, 96%);
+  font-weight: 400;
+  grid-area: active;
+  line-height: 2.5;
+  font-size: 1.2rem;
+}
+body .todo-list .todo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.2rem;
+  background: hsl(0deg, 0%, 89%);
+}
+body .todo-list .todo-header .list-title {
+  line-height: 1;
+}
+body .todo-list .todo-header .task-count {
+  line-height: 1;
+  margin-left: 2rem;
+  font-size: 1.5rem;
+}
+body .todo-list .todo-body {
+  padding: 2.2rem;
+}
+body .todo-list .todo-body .task label {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  font-size: 1.2em;
+  padding: 13px 0;
+}
+body .todo-list .todo-body .task label::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: hsl(0deg, 0%, 89%);
+}
+body .todo-list .todo-body .new-task-creator input,
+body .todo-list .todo-body .new-task-creator input::placeholder {
+  font-size: 1.07em;
+}
+body .todo-list .todo-body .new-task-creator input {
+  width: max(75%, 200px);
+}
+body .todo-list .todo-body .tasks {
+  padding-bottom: 15px;
+}
+body .todo-list .todo-body .tasks > :last-child label::after {
+  content: "";
+  display: none;
+}
+body .todo-list .todo-body .tasks .task:hover .custom-checkbox,
+body .todo-list .todo-body .tasks [type=checkbox]:focus + label .custom-checkbox {
+  transform: scale(1.2);
+  border-color: hsl(214deg, 56%, 48%);
+}
+body .todo-list .todo-body .tasks [type=checkbox]:checked + label .custom-checkbox {
+  background-color: hsl(214deg, 56%, 48%);
+  border-color: hsl(214deg, 56%, 48%);
+  box-shadow: inset 0 0 0px 3px whitesmoke;
+}
+body .todo-list .todo-body .delete-stuff {
+  display: flex;
+  padding-top: 40px;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  align-items: center;
+}
+body .todo-list .todo-body .delete-stuff > * {
+  cursor: pointer;
+  color: hsl(0deg, 0%, 20%);
+}
+body .todo-list .todo-body .delete-stuff > *:hover {
+  opacity: 0.7;
+}
+body .todo-list .todo-body .delete-stuff .delete-btn {
+  flex: 1.5;
+  text-align: center;
+}
+body .todo-list .todo-body .delete-stuff .rename-btn {
+  flex: 0.5;
+  text-align: center;
+}
+body .todo-list .todo-body .delete-stuff .clear-complete-btn {
+  flex: 1;
+  text-align: left;
+  font-size: 130%;
+}
+body .todo-list .todo-body .delete-stuff span.space {
+  flex: 6;
+}
+body .add-new-item {
+  display: flex;
+}
+body .add-new-item .btn-add {
+  font-size: 160%;
+  padding-right: 15px;
+}
+body .add-new-item .new {
+  font-size: 1.2rem;
+  color: inherit;
+  font-weight: 400;
+  background: transparent;
+  color: inherit;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid;
+  transition: all 175ms ease-out;
+  line-height: 1.4;
+  order: 2;
+}
+body .add-new-item .new:focus {
+  border-bottom-width: 3px;
+  transition: all 175ms ease-out;
+}
+body .add-new-item .new:focus::placeholder {
+  color: #c4c4c4;
+}
+body .add-new-item .new::placeholder {
+  font-size: 1.2rem;
+  color: inherit;
+  font-weight: 400;
+}
+body .section-title {
+  font-size: 2.25rem;
+  padding-top: 25px;
+  padding-bottom: 30px;
+}
+
+/*# sourceMappingURL=main.css.map */

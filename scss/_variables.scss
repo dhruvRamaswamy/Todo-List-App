@@ -1,0 +1,10 @@
+@use "sass:color";
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;400;700;900&display=swap');
+$primary-color: hsl(214, 56%, 48%);
+$header-color: hsl(214, 100%, 83%);
+$main-font: "Work Sans",
+    sans-serif;
+$light-color: hsl(0, 0%, 96%);
+$dark-color: hsl(0, 0%, 20%);
+$warning-color: hsl(0, 47%, 26%);
+$light-grey: hsl(0, 0%, 89%);
